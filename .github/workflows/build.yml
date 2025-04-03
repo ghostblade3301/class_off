@@ -1,0 +1,20 @@
+name: Build Windows EXE
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install PyInstaller
+      run: pip install pyinstaller
+    - name: Build EXE
+      run: pyinstaller --onefile class_off.py
+    - name: Upload EXE
+      uses: actions/upload-artifact@v2
+      with:
+        name: class_off.exe
+        path: dist/class_off.exe
