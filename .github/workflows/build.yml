@@ -16,7 +16,12 @@ jobs:
       - name: Debug files
         run: ls -R
       - name: Build EXE
-        run: pyinstaller --onefile class_off.py  # Путь относительно корня репозитория
+        env:
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          echo "SSH_PASSWORD=$SSH_PASSWORD" > .env
+          pyinstaller --onefile class_off.py
+          rm .env
       - name: Debug files
         run: ls -R
       - name: Upload EXE

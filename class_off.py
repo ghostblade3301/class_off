@@ -9,7 +9,7 @@ from tkinter import messagebox
 load_dotenv()
 
 # Пароль для подключения по SSH
-ssh_password = os.getenv("PASSWORD")
+ssh_password = os.getenv("SSH_PASSWORD")
 
 # Список компьютеров (IP-адреса или имена хостов)
 computers = [
