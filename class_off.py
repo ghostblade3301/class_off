@@ -13,7 +13,7 @@ ssh_password = os.getenv("PASSWORD")
 
 # Список компьютеров (IP-адреса или имена хостов)
 computers = [
-    {'name': 'db30', 'ip': '192.168.2.222', 'status': 'unknown'},
+    {'name': 'db30', 'ip': '192.168.4.36', 'status': 'unknown'},
 ]
 
 # Функция для проверки состояния компьютера
