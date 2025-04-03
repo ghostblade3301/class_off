@@ -11,6 +11,8 @@ jobs:
           python-version: '3.9'
       - name: Install PyInstaller
         run: pip install pyinstaller
+      - name: Debug files
+        run: ls -R
       - name: Build EXE
         run: pyinstaller --onefile class_off.py  # Путь относительно корня репозитория
       - name: Debug files
