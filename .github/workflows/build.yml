@@ -14,7 +14,7 @@ jobs:
     - name: Build EXE
       run: pyinstaller --onefile class_off.py
     - name: Upload EXE
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: class_off.exe
         path: dist/class_off.exe
