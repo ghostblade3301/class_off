@@ -13,6 +13,8 @@ jobs:
         run: pip install pyinstaller
       - name: Build EXE
         run: pyinstaller --onefile class_off.py  # Путь относительно корня репозитория
+      - name: Debug files
+        run: ls -R
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
