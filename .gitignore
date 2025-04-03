@@ -2,3 +2,4 @@ venv/
 build/
 dist/
 class_off.spec
+.env

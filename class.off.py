@@ -5,17 +5,15 @@ import tkinter as tk
 import threading
 from dotenv import load_dotenv
 from tkinter import messagebox
-from wakeonlan import send_magic_packet
 
 load_dotenv()
+
 # Пароль для подключения по SSH
 ssh_password = os.getenv("PASSWORD")
 
 # Список компьютеров (IP-адреса или имена хостов)
 computers = [
-    {'name': 'db30', 'ip': '192.168.2.222', 'mac': '38:D5:47:1C:9C:27', 'status': 'unknown'},
-    {'name': 'debian', 'ip': '192.168.4.38', 'mac': 'D4:5D:64:26:70:83', 'status': 'unknown'},
-    {'name': 'host3', 'ip': '192.168.4.21', 'mac': '00:1E:67:AE:82:42', 'status': 'unknown'},
+    {'name': 'db30', 'ip': '192.168.2.222', 'status': 'unknown'},
 ]
 
 # Функция для проверки состояния компьютера
@@ -55,18 +53,6 @@ def shutdown_class():
             except Exception as e:
                 messagebox.showerror("Ошибка", f"Не удалось выключить компьютер {ip}: {e}")
 
-# Функция для включения всех компьютеров
-def power_on_class():
-    for computer in computers:
-        mac = computer['mac']
-        status_label = computer['status_label']
-        try:
-            # Отправляем "магический пакет" для включения компьютера
-            send_magic_packet(mac)
-          #  messagebox.showinfo("Успех", f"Компьютер с MAC {mac} получил команду на включение.")
-        except Exception as e:
-            messagebox.showerror("Ошибка", f"Не удалось отправить Wake-on-LAN пакет для {mac}: {e}")
-
 # Создание GUI
 root = tk.Tk()
 root.title("Управление компьютерами")
@@ -86,10 +72,6 @@ for computer in computers:
 # Кнопка для выключения всех компьютеров
 shutdown_button = tk.Button(root, text="SHUTDOWN CLASS", command=shutdown_class)
 shutdown_button.pack(pady=10)
-
-# Кнопка для включения всех компьютеров
-power_on_button = tk.Button(root, text="POWER ON CLASS", command=power_on_class)
-power_on_button.pack(pady=10)
 
 # Первоначальное обновление статуса
 update_status()
